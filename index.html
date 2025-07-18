@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Music Player</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  
+
   <div class="player">
     <h2>🎵 Music Player</h2>
     <div class="now-playing">
-       <img id="cover" src="images/default.jpg" alt="cover" />
+      <img id="cover" src="images/default.jpg" alt="cover" />
       <h3 id="title">Title</h3>
       <p id="artist">Artist</p>
       <div class="lyrics" id="lyrics">
-  <p>Lyrics will appear here...</p>
-</div>
+        <p>Lyrics will appear here...</p>
+      </div>
 
     </div>
 
@@ -24,7 +26,7 @@
 
     <div class="controls">
       <button onclick="prevSong()">⏮️</button>
-     <button id="play" onclick="togglePlay()">▶️/⏸️</button>
+      <button id="play" onclick="togglePlay()">▶️/⏸️</button>
       <button onclick="nextSong()">⏭️</button>
     </div>
 
@@ -36,11 +38,13 @@
       <span id="current-time">0:00</span>
       <span id="duration">0:00</span>
     </div>
-    <input type="range" id="volume" min="0" max="1" step="0.01" value="1" />
+    <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5" />
+    <span id="volume-label">50%</span>
 
   </div>
-  
+
 
   <script src="script.js"></script>
 </body>
+
 </html>

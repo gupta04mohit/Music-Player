@@ -174,3 +174,9 @@ h2 {
   color: #22c55e;
   font-weight: bold;
 }
+
+#volume-label {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #cbd5e1;
+}

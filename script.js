@@ -31,6 +31,39 @@ const songs = [
   }
 ];
 
+
+const lyricsMap = {
+  "AeWatan.mp3": [
+    { time: 0, text: "Ae watan, watan mere aabaad rahe tu" },
+    { time: 5, text: "Main jahan rahoon, jahan mein yaad rahe tu" },
+    { time: 10, text: "Ae watan, mere watan..." }
+  ],
+  "TeriMitti.mp3": [
+    { time: 0, text: "Teri mitti mein mil jaawaan" },
+    { time: 5, text: "Gul ban ke main khil jaawaan" },
+    { time: 10, text: "Itni si hai dil ki aarzu..." }
+  ],
+  "DeshMera.mp3": [
+  { time: 0, text: "Desh mera, rangila, pyara" },
+  { time: 5, text: "Desh mera, basera tera mera" },
+  { time: 10, text: "Desh mera, sapna sa lagta hai" },
+  { time: 15, text: "Yeh desh hai veer jawaano ka" }
+],
+"LehraDo.mp3": [
+  { time: 0, text: "Lehra do, lehra do" },
+  { time: 5, text: "Yeh tiranga lehra do" },
+  { time: 10, text: "Jahan shaheed soye hain" },
+  { time: 15, text: "Unki yaadon mein lehra do" }
+],
+
+"OShera.mp3": [
+  { time: 0, text: "O Shera vali gallan, kad ke na jaavin" },
+  { time: 5, text: "Tu shera wali baat karein, darr ke na jaavin" },
+  { time: 10, text: "Jo bhi aaye saamne, tu seedha thok de" },
+  { time: 15, text: "Tu sher hai, tu shera hai, himmat na chhod de" }
+],
+};
+
 let isPlaying = false;
 let songIndex = 0;
 
@@ -41,12 +74,15 @@ const progress = document.getElementById("progress");
 const progressContainer = document.querySelector(".progress-container");
 const currentTimeEl = document.getElementById("current-time");
 const durationEl = document.getElementById("duration");
-const volume = document.getElementById("volume");
 const playlist = document.getElementById("playlist");
 const cover = document.getElementById("cover");
 const playBtn = document.getElementById("play");
+const volume = document.getElementById("volume");
+const volumeLabel = document.getElementById("volume-label");
 
 
+audio.volume = 0.5;
+volumeLabel.textContent = "50%";
 
 function loadSong(song) {
   title.innerText = song.title;
@@ -147,35 +183,19 @@ audio.addEventListener("loadedmetadata", () => {
 });
 
 
-
-const lyricsMap = {
-  "AeWatan.mp3": [
-    { time: 0, text: "Ae watan, watan mere aabaad rahe tu" },
-    { time: 5, text: "Main jahan rahoon, jahan mein yaad rahe tu" },
-    { time: 10, text: "Ae watan, mere watan..." }
-  ],
-  "TeriMitti.mp3": [
-    { time: 0, text: "Teri mitti mein mil jaawaan" },
-    { time: 5, text: "Gul ban ke main khil jaawaan" },
-    { time: 10, text: "Itni si hai dil ki aarzu..." }
-  ],
-  // Add more as needed...
-};
-
-
-
-
-
-
-
+volume.addEventListener("input", () => {
+  audio.volume = volume.value;
+  const percent = Math.round(volume.value * 100);
+  volumeLabel.textContent = `${percent}%`; 
+});
 
 
 audio.addEventListener("loadedmetadata", () => {
-  console.log("Duration loaded: ", audio.duration); // 🧪 Debug log
+  console.log("Duration loaded: ", audio.duration);
   durationEl.textContent = formatTime(audio.duration);
 });
 function formatTime(time) {
-  if (!time || isNaN(time)) return "0:00";  // ✅ Safer
+  if (!time || isNaN(time)) return "0:00";  
   const minutes = Math.floor(time / 60);
   const seconds = Math.floor(time % 60).toString().padStart(2, "0");
   return `${minutes}:${seconds}`;
